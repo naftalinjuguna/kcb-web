@@ -1,57 +1,48 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { passwordStregthValidator } from '../../validators/password.validator';
+import { passwordMatchValidator } from '../../validators/password-match.validator';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrls: ['./register.css'],
 })
 export class Register {
   registerForm!: FormGroup;
 
-
-  constructor(private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: this.passwordMatchValidator('password', 'confirmPassword')
-    }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: Auth,
+  ) {
+    this.registerForm = this.formBuilder.group(
+      {
+        firstName: ['', [Validators.required, Validators.minLength(3)]],
+        lastName: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+        password: ['', [Validators.required, Validators.minLength(6), passwordStregthValidator]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        terms: [false, Validators.requiredTrue],
+      },
+      {
+        validators: passwordMatchValidator,
+      },
     );
   }
-  
-  passwordMatchValidator(password: string, confirmPassword: string) {
-    return (formGroup: FormGroup) => {
-      const passwordControl = formGroup.controls[password];
-      const confirmPasswordControl = formGroup.controls[confirmPassword];
 
-      if (confirmPasswordControl.errors && !confirmPasswordControl.errors['passwordMismatch']) {
-        return;
-      }
-      
-      if (passwordControl.value !== confirmPasswordControl.value) {
-        confirmPasswordControl.setErrors({ passwordMismatch: true });
-      } else {
-        confirmPasswordControl.setErrors(null);
-      }
-    };
-  }
+  users: any[] = [];
 
-  onSubmit(): void {
-    if (this.registerForm.valid) {
-      console.log('Form submitted Successfully!', this.registerForm.value);
-    
-    } else {
+  register() {
+    if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
-      console.log('Form is invalid. Please fill in all required fields correctly.');
+      return;
     }
+    this.authService.register(this.registerForm.value);
+    console.log(this.users);
+    this.registerForm.reset();
   }
-
 }
