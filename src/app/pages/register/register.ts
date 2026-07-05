@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { passwordStregthValidator } from '../../validators/password.validator';
 import { passwordMatchValidator } from '../../validators/password-match.validator';
 import { Auth } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,7 @@ export class Register {
   constructor(
     private formBuilder: FormBuilder,
     private authService: Auth,
+    private router: Router,
   ) {
     this.registerForm = this.formBuilder.group(
       {
@@ -33,16 +35,24 @@ export class Register {
       },
     );
   }
-
+  
   users: any[] = [];
+  
 
   register() {
     if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
     }
-    this.authService.register(this.registerForm.value);
-    console.log(this.users);
+
+    const { confirmPassword, ...user } = this.registerForm.value;
+    const success = this.authService.register(user);
+    
+  
+      alert('Register Successfully')
     this.registerForm.reset();
+    this.router.navigate(['/login']);
+    
+
   }
 }
