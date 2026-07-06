@@ -94,7 +94,7 @@
         }
         @if (registerForm.get('password')?.hasError('weakPassword')) {
           <small>
-            Password must contain: uppercase, lowercase, number, and special character.
+            Password must contain: uppercase, lowercase, and number, or special character.
           </small>
         }
       }
@@ -133,6 +133,11 @@
     </div>
 
     <button type="submit">Create Account</button>
+
+    <p class="link">Already have an account?. 
+      <a routerLink="/login"> Login</a>
+    </p>
   </form>
   </div>
 </section>
+<router-outlet></router-outlet>

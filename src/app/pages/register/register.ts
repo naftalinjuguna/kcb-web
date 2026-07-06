@@ -3,12 +3,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { passwordStregthValidator } from '../../validators/password.validator';
 import { passwordMatchValidator } from '../../validators/password-match.validator';
 import { Auth } from '../../services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, RouterOutlet],
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
 })

@@ -12,7 +12,7 @@ export function passwordStregthValidator(control: AbstractControl): ValidationEr
     const hasNumber = /\d/.test(password);
     const hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    const validPassword = hasUpperCase && hasLowerCase && hasNumber && hasSpecialCharacter;
+    const validPassword = hasUpperCase && hasLowerCase && hasNumber || hasSpecialCharacter;
 
     if (validPassword) {
         return null;
