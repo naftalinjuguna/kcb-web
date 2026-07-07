@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { User } from '.../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +27,13 @@ export class Auth {
 
   clearUsers() {
     this.users = [];
+  }
+
+  private generateFakeJwt(user: User): string{
+    return btoa(JSON.stringify({
+      email: user.email,
+      role: user.role,
+      exp: Date.now() + 3600000
+    }))
   }
 }
