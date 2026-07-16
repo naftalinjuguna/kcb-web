@@ -1,7 +1,14 @@
-<div class="h-screen flex flex-col">
-  <app-navbar></app-navbar>
-  <div class="h-screen flex">
-    <app-sidebar></app-sidebar>
-    <app-dashboard></app-dashboard>
+<div class="flex h-screen">
+  <!-- sidebar -->
+  <app-sidebar></app-sidebar>
+  <div class="flex-1 flex flex-col">
+    <!-- navbar -->
+    <app-navbar></app-navbar>
+
+    <main class="flex-1 p-6 overflow-y-auto">
+      <!-- <app-dashboard></app-dashboard> -->
+       <router-outlet></router-outlet>
+    </main>
+
   </div>
 </div>

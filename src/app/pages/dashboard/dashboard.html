@@ -1,24 +1,23 @@
-<section class="px-8 py-4">
-  @if ( hour < 12) {
+<section class="">
+  @if (hour < 12) {
     <h1 class="font-bold">Good morning, John 👋</h1>
-  }
-  @else if (hour < 17) {
+  } @else if (hour < 17) {
     <h1 class="font-bold">Good Afternoon, John 👋</h1>
-  }@else if(hour < 21) {
+  } @else if (hour < 21) {
     <h1 class="font-bold">Good Evening, John 👋</h1>
-  }@else {
+  } @else {
     <h1 class="font-bold">Good Night, John 👋</h1>
   }
   <p>Here's what's happening with your acccounts today.</p>
 
-  <div class="m-4 grid grid-cols-4 w-[1200px] gap-4">
-    <div class="h-45 w-70 bg-white shadow-xl border-1 border-green-200 p-4 rounded-2xl">
+  <div class="m-4 grid grid-cols-4 w-300 gap-4">
+    <div class="h-45 w-70 bg-white shadow-xl border border-green-200 p-4 rounded-2xl">
       <p class="font-medium mb-3">Total Balance</p>
       <p class="font-bold">KES 530,000.20</p>
       <p class="text-[12px]"><span class="text-green-500">+12.5%</span> from last month</p>
     </div>
     @for (account of accounts; track account.type) {
-      <div class="h-45 w-70 bg-white shadow-xl border-1 border-green-200 p-4 rounded-xl">
+      <div class="h-45 w-70 bg-white shadow-xl border border-green-200 p-4 rounded-xl">
         <div class="flex items-center justify-center gap-2 my-4">
           <lucide-icon [img]="Wallet" class="w-6 h-6 text-green-500"></lucide-icon>
           <div>
@@ -34,14 +33,14 @@
     }
   </div>
 
-  <div class="flex my-4 ">
-    <div class="w-100 m-2 shadow-xl border-1 border-green-200 rounded-2xl p-8">
+  <div class="flex my-4">
+    <div class="w-100 m-2 shadow-xl border border-green-200 rounded-2xl p-8">
       <div class="flex items-center justify-between mb-4">
         <h2 class="font-bold">Recent Transaction</h2>
         <button class="text-green-500">View all</button>
       </div>
       <div>
-        <div class="flex items-center justify-between border-b-1 border-green-400 p-2">
+        <div class="flex items-center justify-between border-b border-green-400 p-2">
           <div>
             <h3 class="font-medium">Payment to safaricom</h3>
             <p class="text-[10px]">Mobile Bill</p>
@@ -52,7 +51,7 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between border-b-1 border-green-400 p-2">
+        <div class="flex items-center justify-between border-b border-green-400 p-2">
           <div>
             <h3 class="font-medium">Salary Deposit</h3>
             <p class="text-[10px]">From ABC Company</p>
@@ -63,7 +62,7 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between border-b-1 border-green-400 p-2">
+        <div class="flex items-center justify-between border-b border-green-400 p-2">
           <div>
             <h3 class="font-medium">Payment to KPLC</h3>
             <p class="text-[10px]">Utilities</p>
@@ -76,57 +75,30 @@
       </div>
     </div>
 
-    <div class="my-4 mx-6 px-2 w-70 border-green-200 border-1 rounded-xl shadow-xl p-4">
+    <div class="my-4 mx-6 px-2 w-70 border-green-200 border rounded-xl shadow-xl p-4">
       <h2 class="font-medium m-2">Quick Actions</h2>
       <div class="grid grid-cols-2 grid-row-3 gap-2">
-        <div class="p-2 rounded-xl border-1 border-pink-200 shadow-md">
-          <a class="flex items-center justify-center flex-col text-sm">
-            <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
-            Send Money
-          </a>
-        </div>
-        <div class="p-2 rounded-xl border-1 border-pink-200 shadow-md">
-          <a class="flex items-center justify-center flex-col text-sm">
-            <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
-            Pay Bill
-          </a>
-        </div>
-        <div class="p-2 rounded-xl border-1 border-pink-200 shadow-md">
-          <a class="flex items-center justify-center flex-col text-sm">
-            <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
-            Buy Airtime
-          </a>
-        </div>
-        <div class="p-2 rounded-xl border-1 border-pink-200 shadow-md">
-          <a class="flex items-center justify-center flex-col text-sm">
-            <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
-            Bank Statement
-          </a>
-        </div>
-        <div class="p-2 rounded-xl border-1 border-pink-200 shadow-md">
-          <a class="flex items-center justify-center flex-col text-sm">
-            <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
-            Open Account
-          </a>
-        </div>
-        <div class="p-2 rounded-xl border-1 border-pink-200 shadow-md">
-          <a class="flex items-center justify-center flex-col text-sm">
-            <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
-            Apply for Loan
-          </a>
-        </div>
+        @for (quickActions of quickActions; track quickActions.id) {
+          <div class="p-2 rounded-xl border border-pink-200 shadow-md">
+            <a class="flex items-center justify-center flex-col text-sm">
+              <lucide-icon [img]="Wallet" class="w-6 h-6 mb-2 text-green-500"></lucide-icon>
+              {{ quickActions.title }}
+            </a>
+          </div>
+        }
       </div>
     </div>
     <div class="my-4 mx-4">
-      <div class="flex p-4 rounded-xl border-1 border-green-200 shadow-md">
+      <div class="flex p-4 rounded-xl border border-green-200 shadow-md">
         <div>
-          <h3 class="font-medium my-2 ">Grow your money</h3>
+          <h3 class="font-medium my-2">Grow your money</h3>
           <p>Start an investment plan today and secure your future.</p>
 
           <button class="p-2 my-2 bg-green-500 text-white rounded-xl">Invest Now</button>
         </div>
-        <img src="invest.jpg" alt="invest" class="w-25 h-auto"/>
+        <img src="invest.jpg" alt="invest" class="w-25 h-auto" />
       </div>
     </div>
   </div>
 </section>
+<router-outlet></router-outlet>

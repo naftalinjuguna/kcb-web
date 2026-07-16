@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { LucideAngularModule,  Wallet} from 'lucide-angular';
 
 @Component({
@@ -8,5 +8,7 @@ import { LucideAngularModule,  Wallet} from 'lucide-angular';
   styleUrl: './quick-actions.css',
 })
 export class QuickActions {
+  //action = input.required<QuickActions>();
+  
   readonly Wallet = Wallet;
 }

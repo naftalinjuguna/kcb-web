@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { LucideAngularModule, Wallet } from 'lucide-angular';
+import { LucideAngularModule, Router, Wallet } from 'lucide-angular';
 import { QuickActions } from '../../quick-actions/quick-actions';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [LucideAngularModule, QuickActions],
+  imports: [LucideAngularModule, RouterOutlet],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -14,7 +15,7 @@ export class Dashboard {
   accounts = [
     {
       type: "Current",
-      icon: this.Wallet,
+      icon: "Wallet",
       name: "KCB Current Account",
       number: "0112 3456 7890",
       balance: "145,000.00"
@@ -49,6 +50,7 @@ export class Dashboard {
     },
     {
       id: 4,
+      logo:'Wallet',
       title: 'Bank Statement'
     },
     {

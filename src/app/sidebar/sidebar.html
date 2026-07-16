@@ -1,14 +1,17 @@
 <aside class="flex flex-col border-r-green-100 shadow-2xl w-60 h-full">
+<div class="bg-green-600 h-20 w-60 flex items-center justify-center">
+    <img src="KCBlogo.png" alt="Logo" class="w-25" />
+  </div>
   <ul class="space-y-4">
-    <li>Dashboard</li>
-    <li>Accounts</li>
-    <li>Transfers</li>
-    <li>Payments</li>
-    <li>Cards</li>
-    <li>Loans</li>
-    <li>Investments</li>
-    <li>Profile</li>
-    <li>Setting</li>
-    <li>Help & Support</li>
+    <li routerLink="/dashboard" routerLinkActive="active">Dashboard</li>
+    <li routerLink="/accounts" routerLinkActive="active">Accounts</li>
+    <li routerLink="/transactions" routerLinkActive="active">Transactions</li>
+    <!-- <li routerLink="/payments" routerLinkActive="active">Payments</li> -->
+    <!-- <li routerLink="/cards" routerLinkActive="active">Cards</li> -->
+    <li routerLink="/loans" routerLinkActive="active">Loans</li>
+    <li routerLink="/investments" routerLinkActive="active">Investments</li>
+    <li routerLink="/profile" routerLinkActive="active">Profile</li>
+    <li routerLink="/setting" routerLinkActive="active">Setting</li>
+    <li routerLink="/help" routerLinkActive="active">Help & Support</li>
   </ul>
 </aside>
